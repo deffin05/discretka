@@ -38,7 +38,7 @@
 <body class="bg-gray-100 min-h-screen p-6 md:p-10">
 
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md" style="max-width:73rem">
-        <img src="./Nievel4.jpg">
+        <img src="./Pictures/Nivel4/Tasks4.jpg">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Enter a Number</h1>
 
         <div>
@@ -109,30 +109,30 @@
             if (numberValue % 4 == 1) {
                 message = `Завдання 1, варіант: ${numberValue}.`;
                 imageUrls = [
-                    "./Nievel4_1.jpg",
-                    "./4.1.png"
+                    "./Pictures/Nivel4/4.1S.jpg",
+                    "./Pictures/Nivel4/4.1.png"
                 ];
             } else if (numberValue % 4 == 2) {
                 message = `Завдання 2, варіант: ${numberValue}.`;
                 imageUrls = [
-                    "./4.2.png",
-                    "./4.2a.png"
+                    "./Pictures/Nivel4/4.2.png",
+                    "./Pictures/Nivel4/4.2a.png"
                 ];
             } else if (numberValue % 4 == 3) {
                 message = `Завдання 3, варіант: ${numberValue}.\n`;
                 fetch("./4.3.txt").then((res) => res.text()).then((text) => message.concat(text)).catch((e) => console.error(e));
                 imageUrls = [
-                    "./Nievel4_3.jpg",
-                    "./4.3.png"
+                    "./Pictures/Nivel4/4.3S.jpg",
+                    "./Pictures/Nivel4/4.3.png"
                 ];
             } else if (numberValue % 4 == 0) {
                 message = `Завдання 4, варіант: ${numberValue}.\n`;
                 fetch("4.4.txt").then((res) => res.text()).then((text) => message += text)
                 imageUrls = [
-                    "./4.4a.png",
-                    "./4.4b.png",
-                    "./4.4c.png",
-                    "./4.4d.png"
+                    "./Pictures/Nivel4/4.4a.png",
+                    "./Pictures/Nivel4/4.4b.png",
+                    "./Pictures/Nivel4/4.4c.png",
+                    "./Pictures/Nivel4/4.4d.png"
                 ];
             } else {
                 // Default case for other numbers (e.g., 6 to 100)
