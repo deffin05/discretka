@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,22 +11,30 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
         /* Ensure images have a fallback */
         img {
-            background-color: #eee; /* Light grey background for loading/error */
+            background-color: #eee;
+            /* Light grey background for loading/error */
         }
+
         /* Style for the image container */
         #outputImages {
-            display: flex; /* Arrange images in a row */
-            flex-wrap: wrap; /* Allow images to wrap to the next line */
-            gap: 1rem; /* Add space between images */
-            margin-top: 1rem; /* Space above the image area */
+            display: flex;
+            /* Arrange images in a row */
+            flex-wrap: wrap;
+            /* Allow images to wrap to the next line */
+            gap: 1rem;
+            /* Add space between images */
+            margin-top: 1rem;
+            /* Space above the image area */
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 min-h-screen p-6 md:p-10">
 
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md" style="max-width:73rem">
@@ -34,12 +43,8 @@
 
         <div>
             <label for="numberInput" class="block text-sm font-medium text-gray-700 mb-1">Your Number:</label>
-            <input
-                type="number"
-                id="numberInput"
-                placeholder="e.g., 5, 100, -2"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
+            <input type="number" id="numberInput" placeholder="e.g., 5, 100, -2"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
 
         <div class="mt-6">
@@ -48,7 +53,7 @@
                 Please enter a number above.
             </p>
             <div id="outputImages" class="mt-4">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -121,11 +126,14 @@
                     "./4.3.png"
                 ];
             } else if (numberValue % 4 == 0) {
-                 message = `Завдання 4, варіант: ${numberValue}.\n`;
-                 fetch("4.4.txt").then((res) => res.text()).then((text) => message += text)
-                 imageUrls = [
-                     getPlaceholderUrl('Negative', '212529', 'ffffff') // Dark Grey/Black
-                 ];
+                message = `Завдання 4, варіант: ${numberValue}.\n`;
+                fetch("4.4.txt").then((res) => res.text()).then((text) => message += text)
+                imageUrls = [
+                    "./4.4a.png",
+                    "./4.4b.png",
+                    "./4.4c.png",
+                    "./4.4d.png"
+                ];
             } else {
                 // Default case for other numbers (e.g., 6 to 100)
                 message = `You entered the number ${numberValue}.\n`;
@@ -143,7 +151,7 @@
                 const imgElement = document.createElement('img'); // Create an <img> tag
                 imgElement.src = url;                             // Set its source
                 imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
-                imgElement.onerror = function() {
+                imgElement.onerror = function () {
                     // Fallback if the image fails to load (though placeholders are reliable)
                     this.alt = 'Image failed to load';
                     this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
@@ -160,4 +168,5 @@
     </script>
 
 </body>
+
 </html>
