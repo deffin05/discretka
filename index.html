@@ -38,7 +38,7 @@
 <body class="bg-gray-100 min-h-screen p-6 md:p-10">
 
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md" style="max-width:73rem">
-        <img src="./Pictures/Nivel4/Tasks4.jpg">
+        <img src="./Pictures/Nivel4/Tasks4.png">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Enter a Number</h1>
 
         <div>
@@ -54,14 +54,49 @@
             </p>
             <div id="outputImages" class="mt-4">
             </div>
+            <div id="Nivel1">
+                <h3 class="text-2xl font-bold text-gray-600 mb-3">Nivel 1</h3>
+                <div id="Nivel1-text">
+
+                </div>
+                <div class="image" id="Nivel1-images">
+
+                </div>
+            </div>
+            <div id="Nivel2">
+                <h3 class="text-2xl font-bold text-gray-600 mb-3">Nivel 2</h3>
+                <div id="Nivel2-text">
+
+                </div>
+                <div class="image" id="Nivel2-images">
+
+                </div>
+            </div>
+            <div id="Nivel3">
+                <h3 class="text-2xl font-bold text-gray-600 mb-3">Nivel 3</h3>
+                <div id="Nivel3-text">
+
+                </div>
+                <div class="image" id="Nivel3-images">
+
+                </div>
+            </div>
+            <div id="Nivel4">
+                <h3 class="text-2xl font-bold text-gray-600 mb-3">Nivel 4</h3>
+                <div class="text-2xl mb-4" id="Nivel4-text">
+
+                </div>
+                <div class="image" id="Nivel4-images">
+
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         // Get references to the HTML elements
         const numberInput = document.getElementById('numberInput');
-        const outputStringDiv = document.getElementById('outputString');
-        const outputImagesDiv = document.getElementById('outputImages');
+        const imageDivs = document.getElementsByClassName('image');
 
         // --- Image Placeholder Configuration ---
         // Using placehold.co for better customization
@@ -83,9 +118,10 @@
         function handleInputChange() {
             const inputValue = numberInput.value;
 
-            // Clear previous outputs
-            outputStringDiv.textContent = '';
-            outputImagesDiv.innerHTML = ''; // Clear previous images
+            for (let i = 0; i < imageDivs.length; i++) {
+                const element = imageDivs[i];
+                element.innerHTML = ''
+            }
 
             // --- Input Validation ---
             if (inputValue === '') {
@@ -101,50 +137,85 @@
                 return; // Stop if not a valid number
             }
 
-            // --- Conditional Logic ---
-            // Determine the output string and images based on the number
-            let message = '';
-            let imageUrls = []; // Array to hold the URLs of images to display
+            setNivel1(numberValue);
+            setNivel2(numberValue);
+            setNivel3(numberValue);
+            setNivel4(numberValue);
+        }
 
-            if (numberValue % 4 == 1) {
-                message = `Завдання 1, варіант: ${numberValue}.`;
+        function setNivel1(numberValue) {
+            const textDiv = document.getElementById('Nivel1-text');
+            const imagesDiv = document.getElementById('Nivel1-images');
+        }
+        function setNivel2(numberValue) {
+            const textDiv = document.getElementById('Nivel2-text');
+            const imagesDiv = document.getElementById('Nivel2-images');
+        }
+        function setNivel3(numberValue) {
+            const textDiv = document.getElementById('Nivel3-text');
+            const imagesDiv = document.getElementById('Nivel3-images');
+
+            let message = '';
+            let imageUrls = [`./Pictures/Nivel3/Tasks/${numberValue % 11}.png`]; // Array to hold the URLs of images to display
+
+            if (numberValue % 11 == 1) {
                 imageUrls = [
-                    "./Pictures/Nivel4/4.1S.jpg",
-                    "./Pictures/Nivel4/4.1.png"
+                    imageUrls[0],
+                    // "./Pictures/Nivel4/4.1S.jpg",
+                    // "./Pictures/Nivel4/4.1.png"
                 ];
-            } else if (numberValue % 4 == 2) {
-                message = `Завдання 2, варіант: ${numberValue}.`;
+            } else if (numberValue % 11 == 2) {
                 imageUrls = [
-                    "./Pictures/Nivel4/4.2.png",
-                    "./Pictures/Nivel4/4.2a.png"
+                    imageUrls[0],
+                    "./Pictures/Nivel3/3.2s1.png",
+                    "./Pictures/Nivel3/3.2s2.png",
                 ];
-            } else if (numberValue % 4 == 3) {
-                message = `Завдання 3, варіант: ${numberValue}.\n`;
-                fetch("./4.3.txt").then((res) => res.text()).then((text) => message.concat(text)).catch((e) => console.error(e));
+            } else if (numberValue % 11 == 3) {
                 imageUrls = [
-                    "./Pictures/Nivel4/4.3S.jpg",
-                    "./Pictures/Nivel4/4.3.png"
+                    imageUrls[0],
+                    // "./Pictures/Nivel4/4.3S.jpg",
+                    // "./Pictures/Nivel4/4.3.png"
                 ];
-            } else if (numberValue % 4 == 0) {
-                message = `Завдання 4, варіант: ${numberValue}.\n`;
-                fetch("4.4.txt").then((res) => res.text()).then((text) => message += text)
+            } else if (numberValue % 11 == 4) {
                 imageUrls = [
-                    "./Pictures/Nivel4/4.4a.png",
-                    "./Pictures/Nivel4/4.4b.png",
-                    "./Pictures/Nivel4/4.4c.png",
-                    "./Pictures/Nivel4/4.4d.png"
+                    imageUrls[0],
+                    "./Pictures/Nivel3/3.4s1.png",
+                    "./Pictures/Nivel3/3.4s2.png",
                 ];
-            } else {
-                // Default case for other numbers (e.g., 6 to 100)
-                message = `You entered the number ${numberValue}.\n`;
+            } else if (numberValue % 11 == 5) {
                 imageUrls = [
-                    getPlaceholderUrl('Standard', 'adb5bd', '333333') // Light Grey
+                    imageUrls[0],
+                    // "./Pictures/Nivel4/4.4a.png",
+                    // "./Pictures/Nivel4/4.4b.png",
+                    // "./Pictures/Nivel4/4.4c.png",
+                    // "./Pictures/Nivel4/4.4d.png"
+                ];
+            } else if (numberValue % 11 == 6) {
+                imageUrls = [
+                    imageUrls[0],
+                ];
+            } else if (numberValue % 11 == 7) {
+                imageUrls = [
+                    imageUrls[0],
+                ];
+            } else if (numberValue % 11 == 8) {
+                imageUrls = [
+                    imageUrls[0],
+                ];
+            } else if (numberValue % 11 == 9) {
+                imageUrls = [
+                    imageUrls[0],
+                ];
+            } else if (numberValue % 11 == 10) {
+                imageUrls = [
+                    imageUrls[0],
+                ];
+            } else if (numberValue % 11 == 0) {
+                imageUrls = [
+                    imageUrls[0],
                 ];
             }
-
-            // --- Update the DOM ---
-            // Display the determined string
-            outputStringDiv.textContent = message;
+            textDiv.textContent = message;
 
             // Create and display the images
             imageUrls.forEach(url => {
@@ -157,13 +228,99 @@
                     this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
                 };
                 // Add Tailwind classes for styling images (optional, can also use CSS)
-                imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover');
-                outputImagesDiv.appendChild(imgElement);          // Add the image to the page
+                if (url.includes("Tasks")) {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
+                } else {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
+                }
+
+                imagesDiv.appendChild(imgElement);          // Add the image to the page
+                if (url.includes("Tasks")) {
+                    const line = document.createElement('hr');
+                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                    imagesDiv.appendChild(line);
+                }
             });
         }
+        function setNivel4(numberValue) {
+            const textDiv = document.getElementById('Nivel4-text');
+            const imagesDiv = document.getElementById('Nivel4-images');
 
+            let message = '';
+            let imageUrls = [`./Pictures/Nivel4/Tasks/${numberValue % 6}.png`]; // Array to hold the URLs of images to display
+
+            if (numberValue % 6 == 1) {
+                imageUrls = [
+                    imageUrls[0],
+                    "./Pictures/Nivel4/4.1S.jpg",
+                    "./Pictures/Nivel4/4.1.png"
+                ];
+            } else if (numberValue % 6 == 2) {
+                imageUrls = [
+                    imageUrls[0],
+                    "./Pictures/Nivel4/4.2.png",
+                    "./Pictures/Nivel4/4.2a.png"
+                ];
+            } else if (numberValue % 6 == 3) {
+                imageUrls = [
+                    imageUrls[0],
+                    "./Pictures/Nivel4/4.3S.jpg",
+                    "./Pictures/Nivel4/4.3.png"
+                ];
+            } else if (numberValue % 6 == 4) {
+                imageUrls = [
+                    imageUrls[0],
+                    "./Pictures/Nivel4/4.4a.png",
+                    "./Pictures/Nivel4/4.4b.png",
+                    "./Pictures/Nivel4/4.4c.png",
+                    "./Pictures/Nivel4/4.4d.png"
+                ];
+            } else if (numberValue % 6 == 5) {
+                imageUrls = [
+                    imageUrls[0],
+                    // "./Pictures/Nivel4/4.4a.png",
+                    // "./Pictures/Nivel4/4.4b.png",
+                    // "./Pictures/Nivel4/4.4c.png",
+                    // "./Pictures/Nivel4/4.4d.png"
+                ];
+            } else if (numberValue % 6 == 0) {
+                imageUrls = [
+                    imageUrls[0],
+                    // "./Pictures/Nivel4/4.4a.png",
+                    // "./Pictures/Nivel4/4.4b.png",
+                    // "./Pictures/Nivel4/4.4c.png",
+                    // "./Pictures/Nivel4/4.4d.png"
+                ];
+            }
+            textDiv.textContent = message;
+
+            // Create and display the images
+            imageUrls.forEach(url => {
+                const imgElement = document.createElement('img'); // Create an <img> tag
+                imgElement.src = url;                             // Set its source
+                imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
+                imgElement.onerror = function () {
+                    // Fallback if the image fails to load (though placeholders are reliable)
+                    this.alt = 'Image failed to load';
+                    this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
+                };
+                // Add Tailwind classes for styling images (optional, can also use CSS)
+                if (url.includes("Tasks")) {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
+                } else {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
+                }
+
+                imagesDiv.appendChild(imgElement);          // Add the image to the page
+                if (url.includes("Tasks")) {
+                    const line = document.createElement('hr');
+                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                    imagesDiv.appendChild(line);
+                }
+            });
+        }
         // Initialize on page load (optional, in case there's a default value)
-        // handleInputChange(); // Uncomment if you want it to run once on load
+        handleInputChange(); // Uncomment if you want it to run once on load
 
     </script>
 
