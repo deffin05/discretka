@@ -374,6 +374,11 @@
                         imagesDiv.appendChild(line);
                     }
                 });
+                if (mode && !index) {
+                    const line = document.createElement('hr');
+                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                    imagesDiv.appendChild(line);
+                }
             }
         }
         function setNivel4(numberValue) {
