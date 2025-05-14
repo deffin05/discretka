@@ -38,8 +38,13 @@
 <body class="bg-gray-100 min-h-screen p-6 md:p-10">
 
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md" style="max-width:73rem">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">Enter a Number</h1>
-
+        <div class="flex flex-row content-between justify-between">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Enter a Number</h1>
+            <div class="text-2xl font-bold text-gray-500 mr-4">
+                <label for="niv3-2">81-90</label>
+                <input class="w-5 h-5 ml-2 rounded-md border-gray-600" type="checkbox" name="niv3-2" id="niv3-2">
+            </div>
+        </div>
         <div>
             <label for="numberInput" class="block text-sm font-medium text-gray-700 mb-1">Your Number:</label>
             <input type="number" id="numberInput" placeholder="e.g., 5, 100, -2"
@@ -47,10 +52,6 @@
         </div>
 
         <div class="mt-6">
-            <h2 class="text-lg font-semibold text-gray-700">Output:</h2>
-            <p id="outputString" class="mt-2 text-gray-600 min-h-[1.5em]">
-                Please enter a number above.
-            </p>
             <div id="outputImages" class="mt-4">
             </div>
             <div id="Nivel1">
@@ -102,6 +103,7 @@
         // Get references to the HTML elements
         const numberInput = document.getElementById('numberInput');
         const imageDivs = document.getElementsByClassName('image');
+        const checkbox = document.getElementById('niv3-2')
 
         // --- Image Placeholder Configuration ---
         // Using placehold.co for better customization
@@ -118,10 +120,13 @@
         // --- Event Listener ---
         // Add an event listener that triggers whenever the input value changes
         numberInput.addEventListener('input', handleInputChange);
+        checkbox.addEventListener('click', handleInputChange);
+
 
         // --- Input Handler Function ---
         function handleInputChange() {
             const inputValue = numberInput.value;
+            const checkboxValue = checkbox.checked
 
             for (let i = 0; i < imageDivs.length; i++) {
                 const element = imageDivs[i];
@@ -130,7 +135,7 @@
 
             // --- Input Validation ---
             if (inputValue === '') {
-                outputStringDiv.textContent = 'Please enter a number.';
+                // outputStringDiv.textContent = 'Please enter a number.';
                 return; // Stop if input is empty
             }
 
@@ -144,7 +149,7 @@
 
             setNivel1(numberValue);
             setNivel2(numberValue);
-            setNivel3(numberValue);
+            setNivel3(numberValue, checkboxValue);
             setNivel4(numberValue);
         }
 
@@ -278,96 +283,98 @@
                 imagesDiv.appendChild(line);
             }
         }
-        function setNivel3(numberValue) {
+        function setNivel3(numberValue, mode) {
             const textDiv = document.getElementById('Nivel3-text');
             const imagesDiv = document.getElementById('Nivel3-images');
 
-            let message = '';
-            let imageUrls = [`./Pictures/Nivel3/Tasks/${numberValue % 11}.png`]; // Array to hold the URLs of images to display
+            for (let index = 0; index < 1 + mode; index++, numberValue += 5) {
+                let message = '';
+                let imageUrls = [`./Pictures/Nivel3/Tasks/${numberValue % 11}.png`]; // Array to hold the URLs of images to display
 
-            if (numberValue % 11 == 1) {
-                imageUrls = [
-                    imageUrls[0],
-                    // "./Pictures/Nivel4/4.1S.jpg",
-                    // "./Pictures/Nivel4/4.1.png"
-                ];
-            } else if (numberValue % 11 == 2) {
-                imageUrls = [
-                    imageUrls[0],
-                    "./Pictures/Nivel3/3.2s1.png",
-                    "./Pictures/Nivel3/3.2s2.png",
-                ];
-            } else if (numberValue % 11 == 3) {
-                imageUrls = [
-                    imageUrls[0],
-                    // "./Pictures/Nivel4/4.3S.jpg",
-                    // "./Pictures/Nivel4/4.3.png"
-                ];
-            } else if (numberValue % 11 == 4) {
-                imageUrls = [
-                    imageUrls[0],
-                    "./Pictures/Nivel3/3.4s1.png",
-                    "./Pictures/Nivel3/3.4s2.png",
-                ];
-            } else if (numberValue % 11 == 5) {
-                imageUrls = [
-                    imageUrls[0],
-                    // "./Pictures/Nivel4/4.4a.png",
-                    // "./Pictures/Nivel4/4.4b.png",
-                    // "./Pictures/Nivel4/4.4c.png",
-                    // "./Pictures/Nivel4/4.4d.png"
-                ];
-            } else if (numberValue % 11 == 6) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
-            } else if (numberValue % 11 == 7) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
-            } else if (numberValue % 11 == 8) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
-            } else if (numberValue % 11 == 9) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
-            } else if (numberValue % 11 == 10) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
-            } else if (numberValue % 11 == 0) {
-                imageUrls = [
-                    imageUrls[0],
-                ];
+                if (numberValue % 11 == 1) {
+                    imageUrls = [
+                        imageUrls[0],
+                        // "./Pictures/Nivel4/4.1S.jpg",
+                        // "./Pictures/Nivel4/4.1.png"
+                    ];
+                } else if (numberValue % 11 == 2) {
+                    imageUrls = [
+                        imageUrls[0],
+                        "./Pictures/Nivel3/3.2s1.png",
+                        "./Pictures/Nivel3/3.2s2.png",
+                    ];
+                } else if (numberValue % 11 == 3) {
+                    imageUrls = [
+                        imageUrls[0],
+                        // "./Pictures/Nivel4/4.3S.jpg",
+                        // "./Pictures/Nivel4/4.3.png"
+                    ];
+                } else if (numberValue % 11 == 4) {
+                    imageUrls = [
+                        imageUrls[0],
+                        "./Pictures/Nivel3/3.4s1.png",
+                        "./Pictures/Nivel3/3.4s2.png",
+                    ];
+                } else if (numberValue % 11 == 5) {
+                    imageUrls = [
+                        imageUrls[0],
+                        // "./Pictures/Nivel4/4.4a.png",
+                        // "./Pictures/Nivel4/4.4b.png",
+                        // "./Pictures/Nivel4/4.4c.png",
+                        // "./Pictures/Nivel4/4.4d.png"
+                    ];
+                } else if (numberValue % 11 == 6) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                } else if (numberValue % 11 == 7) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                } else if (numberValue % 11 == 8) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                } else if (numberValue % 11 == 9) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                } else if (numberValue % 11 == 10) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                } else if (numberValue % 11 == 0) {
+                    imageUrls = [
+                        imageUrls[0],
+                    ];
+                }
+                textDiv.textContent = message;
+
+                // Create and display the images
+                imageUrls.forEach(url => {
+                    const imgElement = document.createElement('img'); // Create an <img> tag
+                    imgElement.src = url;                             // Set its source
+                    imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
+                    imgElement.onerror = function () {
+                        // Fallback if the image fails to load (though placeholders are reliable)
+                        this.alt = 'Image failed to load';
+                        this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
+                    };
+                    // Add Tailwind classes for styling images (optional, can also use CSS)
+                    if (url.includes("Tasks")) {
+                        imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
+                    } else {
+                        imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
+                    }
+
+                    imagesDiv.appendChild(imgElement);          // Add the image to the page
+                    if (url.includes("Tasks")) {
+                        const line = document.createElement('hr');
+                        line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                        imagesDiv.appendChild(line);
+                    }
+                });
             }
-            textDiv.textContent = message;
-
-            // Create and display the images
-            imageUrls.forEach(url => {
-                const imgElement = document.createElement('img'); // Create an <img> tag
-                imgElement.src = url;                             // Set its source
-                imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
-                imgElement.onerror = function () {
-                    // Fallback if the image fails to load (though placeholders are reliable)
-                    this.alt = 'Image failed to load';
-                    this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
-                };
-                // Add Tailwind classes for styling images (optional, can also use CSS)
-                if (url.includes("Tasks")) {
-                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
-                } else {
-                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
-                }
-
-                imagesDiv.appendChild(imgElement);          // Add the image to the page
-                if (url.includes("Tasks")) {
-                    const line = document.createElement('hr');
-                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
-                    imagesDiv.appendChild(line);
-                }
-            });
         }
         function setNivel4(numberValue) {
             const textDiv = document.getElementById('Nivel4-text');
