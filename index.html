@@ -151,6 +151,36 @@
         function setNivel1(numberValue) {
             const textDiv = document.getElementById('Nivel1-text');
             const imagesDiv = document.getElementById('Nivel1-images');
+
+
+            let imageUrls = [
+                `./Pictures/Nivel1/Tasks/${numberValue % 35}.png`,
+                `./Pictures/Nivel1/Tasks/${(numberValue + 17) % 35}.png`
+            ];
+
+            imageUrls.forEach(url => {
+                const imgElement = document.createElement('img'); // Create an <img> tag
+                imgElement.src = url;                             // Set its source
+                imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
+                imgElement.onerror = function () {
+                    // Fallback if the image fails to load (though placeholders are reliable)
+                    this.alt = 'No image';
+                    // this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
+                };
+                // Add Tailwind classes for styling images (optional, can also use CSS)
+                if (url.includes("Tasks")) {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
+                } else {
+                    imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
+                }
+
+                imagesDiv.appendChild(imgElement);          // Add the image to the page
+                if (url.includes("Tasks")) {
+                    const line = document.createElement('hr');
+                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                    imagesDiv.appendChild(line);
+                }
+            });
         }
         function setNivel2(numberValue) {
             let tasks = [numberValue % 13, (numberValue + 6) % 13]
