@@ -374,6 +374,14 @@
                         imagesDiv.appendChild(line);
                     }
                 });
+                const parag = document.createElement('p');
+                fetch('file://Docs/Nivel3/11.txt')
+                    .then(response => response.text())
+                    .then(text => {
+                        const textNode = document.createTextNode(text);
+                        parag.appendChild(textNode)
+                    })
+                imagesDiv.appendChild(parag);
                 if (mode && !index) {
                     const line = document.createElement('hr');
                     line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
