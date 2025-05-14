@@ -38,7 +38,6 @@
 <body class="bg-gray-100 min-h-screen p-6 md:p-10">
 
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md" style="max-width:73rem">
-        <img src="./Pictures/Nivel4/Tasks4.png">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Enter a Number</h1>
 
         <div>
@@ -65,10 +64,16 @@
             </div>
             <div id="Nivel2">
                 <h3 class="text-2xl font-bold text-gray-600 mb-3">Nivel 2</h3>
-                <div id="Nivel2-text">
+                <div id="Nivel2_1-text">
 
                 </div>
-                <div class="image" id="Nivel2-images">
+                <div class="image" id="Nivel2_1-images">
+
+                </div>
+                <div id="Nivel2_2-text">
+
+                </div>
+                <div class="image" id="Nivel2_2-images">
 
                 </div>
             </div>
@@ -148,8 +153,100 @@
             const imagesDiv = document.getElementById('Nivel1-images');
         }
         function setNivel2(numberValue) {
-            const textDiv = document.getElementById('Nivel2-text');
-            const imagesDiv = document.getElementById('Nivel2-images');
+            let tasks = [numberValue % 13, (numberValue + 6) % 13]
+            for (let i = 1; i < 3; i++) {
+                let number = tasks[i - 1];
+                let k = 0
+                let graph = ""
+
+                if (number == 1 || number == 8) {
+                    k = numberValue % 7
+                    if (!k) {
+                        k = 7
+                    }
+                } else if (number == 2 || number == 4) {
+                    k = numberValue % 4
+                    if (!k) {
+                        k = 4
+                    }
+                } else if (number == 3 || number == 5) {
+                    k = numberValue % 5
+                    if (!k) {
+                        k = 5
+                    }
+                } else if (number == 6 || number == 12) {
+                    k = numberValue % 6
+                    if (!k) {
+                        k = 6
+                    }
+                } else if (number == 7) {
+                    k = numberValue % 9
+                    if (!k) {
+                        k = 9
+                    }
+                } else if (number == 9) {
+                    k = numberValue % 8
+                    if (!k) {
+                        k = 8
+                    }
+                } else if (number == 10) {
+                    k = numberValue % 2
+                    if (!k) {
+                        k = 2
+                    }
+                } else if (number == 11) {
+                    k = numberValue % 3
+                    if (!k) {
+                        k = 3
+                    }
+                } else if (number == 0) {
+                    number = 13
+                    k = numberValue % 5
+                    if (!k) {
+                        k = 5
+                    }
+                }
+
+                let imageUrls = [
+                    `./Pictures/Nivel2/Tasks/${number}.png`,
+                    `./Pictures/Nivel2/2.${number}/${k}.png`
+                ];
+
+                let general = [1, 2, 3, 6, 7, 8, 9, 12, 13]
+                if (general.includes(number)) {
+                    imageUrls[1] = `./Pictures/Nivel2/2.${number}/1.png`
+                }
+
+                document.getElementById(`Nivel2_${i}-text`).textContent = `k = ${k}`
+                let imagesDiv = document.getElementById(`Nivel2_${i}-images`)
+
+                imageUrls.forEach(url => {
+                    const imgElement = document.createElement('img'); // Create an <img> tag
+                    imgElement.src = url;                             // Set its source
+                    imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
+                    imgElement.onerror = function () {
+                        // Fallback if the image fails to load (though placeholders are reliable)
+                        this.alt = 'Image failed to load';
+                        this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
+                    };
+                    // Add Tailwind classes for styling images (optional, can also use CSS)
+                    if (url.includes("Tasks")) {
+                        imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-4');
+                    } else {
+                        imgElement.classList.add('rounded-md', 'shadow-sm', 'object-cover', 'mb-1');
+                    }
+
+                    imagesDiv.appendChild(imgElement);          // Add the image to the page
+                    if (url.includes("Tasks")) {
+                        const line = document.createElement('hr');
+                        line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                        imagesDiv.appendChild(line);
+                    }
+                });
+                const line = document.createElement('hr');
+                line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                imagesDiv.appendChild(line);
+            }
         }
         function setNivel3(numberValue) {
             const textDiv = document.getElementById('Nivel3-text');
