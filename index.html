@@ -160,16 +160,18 @@
 
             let imageUrls = [
                 `./Pictures/Nivel1/Tasks/${numberValue % 35}.png`,
-                `./Pictures/Nivel1/Tasks/${(numberValue + 18) % 35}.png`
+                `./Pictures/Nivel1/1.${numberValue % 35}/1.png`,
+                `./Pictures/Nivel1/Tasks/${(numberValue + 18) % 35}.png`,
+                `./Pictures/Nivel1/1.${(numberValue + 18) % 35}/1.png`
             ];
 
             imageUrls.forEach(url => {
                 const imgElement = document.createElement('img'); // Create an <img> tag
                 imgElement.src = url;                             // Set its source
-                imgElement.alt = `Placeholder image related to number ${numberValue}`; // Set alt text
+                imgElement.alt = `No image`; // Set alt text
                 imgElement.onerror = function () {
                     // Fallback if the image fails to load (though placeholders are reliable)
-                    this.alt = 'No image';
+                    return
                     // this.src = getPlaceholderUrl('Error', 'ff0000', 'ffffff'); // Red error placeholder
                 };
                 // Add Tailwind classes for styling images (optional, can also use CSS)
