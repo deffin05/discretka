@@ -160,7 +160,7 @@
 
             let imageUrls = [
                 `./Pictures/Nivel1/Tasks/${numberValue % 35}.png`,
-                `./Pictures/Nivel1/Tasks/${(numberValue + 17) % 35}.png`
+                `./Pictures/Nivel1/Tasks/${(numberValue + 18) % 35}.png`
             ];
 
             imageUrls.forEach(url => {
@@ -188,7 +188,7 @@
             });
         }
         function setNivel2(numberValue) {
-            let tasks = [numberValue % 13, (numberValue + 6) % 13]
+            let tasks = [numberValue % 13, (numberValue + 7) % 13]
             for (let i = 1; i < 3; i++) {
                 let number = tasks[i - 1];
                 let k = 0
@@ -287,7 +287,7 @@
             const textDiv = document.getElementById('Nivel3-text');
             const imagesDiv = document.getElementById('Nivel3-images');
 
-            for (let index = 0; index < 1 + mode; index++, numberValue += 5) {
+            for (let index = 0; index < 1 + mode; index++, numberValue += 6) {
                 let message = '';
                 let imageUrls = [`./Pictures/Nivel3/Tasks/${numberValue % 11}.png`]; // Array to hold the URLs of images to display
 
@@ -301,13 +301,11 @@
                     imageUrls = [
                         imageUrls[0],
                         "./Pictures/Nivel3/3.2s1.png",
-                        "./Pictures/Nivel3/3.2s2.png",
                     ];
                 } else if (numberValue % 11 == 3) {
                     imageUrls = [
                         imageUrls[0],
-                        // "./Pictures/Nivel4/4.3S.jpg",
-                        // "./Pictures/Nivel4/4.3.png"
+                        'Pictures/Nivel3/3.3/1.png'
                     ];
                 } else if (numberValue % 11 == 4) {
                     imageUrls = [
@@ -375,11 +373,10 @@
                         imagesDiv.appendChild(line);
                     }
                 });
-                if (mode && !index) {
-                    const line = document.createElement('hr');
-                    line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
-                    imagesDiv.appendChild(line);
-                }
+                const line = document.createElement('hr');
+                line.classList.add('h-1', 'rounded-md', 'dark:bg-gray-400', 'mb-4');
+                imagesDiv.appendChild(line);
+
             }
         }
         function setNivel4(numberValue) {
